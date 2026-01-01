@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>מערכת מזג אוויר - שיעור 8</title>
+
+    <!--
+      This HTML file is the single entry point for the weather app.
+      All CSS/JS (Bootstrap, Axios, our code) are loaded via Vite from src/main.js.
+    -->
+  </head>
+  <body class="bg-light">
+    <!-- Top navigation bar using Bootstrap components -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">מערכת מזג אוויר</a>
+        <!-- Simple theme toggle control (handled in JS) -->
+        <button
+          id="theme-toggle"
+          type="button"
+          class="btn btn-outline-light btn-sm ms-auto"
+        >
+          מצב לילה
+        </button>
+      </div>
+    </nav>
+
+    <!-- Main content container for the search form and results -->
+    <main class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+          <!-- Search card: user types a city name and submits the form -->
+          <div class="card shadow-sm mb-4 app-search-card">
+            <div class="card-body">
+              <h1 class="card-title h4 mb-3 text-center">
+                חיפוש מזג אוויר לפי עיר
+              </h1>
+              <!-- Weather search form (handled in src/main.js) -->
+              <form id="weather-form" class="row g-2">
+                <div class="col-12">
+                  <label for="city-input" class="form-label">
+                    שם העיר (לדוגמה: Tel Aviv, Jerusalem)
+                  </label>
+                  <input
+                    type="text"
+                    id="city-input"
+                    class="form-control"
+                    placeholder="הקלד/י שם עיר"
+                    required
+                  />
+                </div>
+                <div class="col-12 d-grid">
+                  <button type="submit" class="btn btn-primary">
+                    הצג מזג אוויר
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Result card: initially hidden, shown after a successful API call -->
+          <div id="weather-result" class="card shadow-sm d-none">
+            <div class="card-body">
+              <h2 class="h5 mb-3" id="result-location"></h2>
+              <p class="display-5 fw-semibold mb-2" id="result-temp"></p>
+              <p class="mb-2" id="result-description"></p>
+              <p class="text-muted small mb-0" id="result-extra"></p>
+            </div>
+          </div>
+
+          <!-- Message area for loading / error / info alerts -->
+          <div id="weather-message" class="alert d-none mt-3" role="alert"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Vite entry point: loads Bootstrap, Axios and the app logic from src/main.js -->
+    <script type="module" src="/src/main.js"></script>
+  </body>
+  </html>
+
+
