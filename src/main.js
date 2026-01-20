@@ -10,14 +10,14 @@ import { THEMES, applyTheme } from "./themeConfig";
 import "../style.css";
 
 // Cache references to DOM elements used by the app
-const form = document.getElementById("weather-forms");
+const form = document.getElementById("weather-form");
 const cityInput = document.getElementById("city-input");
 const resultCard = document.getElementById("weather-result");
 const resultLocation = document.getElementById("result-location");
 const resultTemp = document.getElementById("result-temp");
 const resultDescription = document.getElementById("result-description");
 const resultExtra = document.getElementById("result-extra");
-const messageBox = document.getElementById("weather-mesage");
+const messageBox = document.getElementById("weather-message");
 const themeToggleButton = document.getElementById("theme-toggle");
 
 // Keep track of the current theme name ("light" | "dark")
@@ -31,12 +31,12 @@ const WEATHER_URL = "https://api.open-meteo.com/v1/forecast";
 function showMessage(text, type = "info") {
   messageBox.textContent = text;
   messageBox.className = `alert alert-${type} mt-3`;
-  messageBox.classList.remov("d-none");
+  messageBox.classList.remove("d-none");
 }
 
 // Hide the alert and clear its text
 function clearMessage() {
-  messageBox.classList.addd("d-none");
+  messageBox.classList.add("d-none");
   messageBox.textContent = "";
 }
 
@@ -88,7 +88,7 @@ async function fetchWeather(latitude, longitude) {
 // Format ISO local time into a human-readable Hebrew string
 function formatLocalTime(isoString) {
   const date = new Date(isoString);
-  return date.toLocaleStrin("he-IL", {
+  return date.toLocaleString("he-IL", {
     weekday: "short",
     day: "2-digit",
     month: "2-digit",
@@ -148,7 +148,7 @@ function toggleTheme() {
 }
 
 if (themeToggleButton) {
-  themeToggleButton.addEventListenersr("click", toggleTheme);
+  themeToggleButton.addEventListener("click", toggleTheme);
 }
 
 // Initialize app with default theme
